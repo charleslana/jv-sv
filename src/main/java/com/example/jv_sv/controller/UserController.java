@@ -33,27 +33,15 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateUser(@Valid @PathVariable String id, @RequestBody UserUpdateDTO dto) {
-        Long longId;
-        try {
-            longId = Long.valueOf(id);
-            dto.setUserId(longId);
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+    public ResponseEntity<UserDTO> updateUser(@Valid @PathVariable Long id, @RequestBody UserUpdateDTO dto) {
+        dto.setUserId(id);
         UserDTO updatedUser = service.update(dto);
         return ResponseEntity.ok(updatedUser);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUserById(@Valid @PathVariable String id) {
-        Long longId;
-        try {
-            longId = Long.valueOf(id);
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
-        UserDTO user = service.getByUserId(longId);
+    public ResponseEntity<UserDTO> getUserById(@Valid @PathVariable Long id) {
+        UserDTO user = service.getByUserId(id);
         return ResponseEntity.ok(user);
     }
 
