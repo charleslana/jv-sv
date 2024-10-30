@@ -31,3 +31,11 @@ docker exec -it mongodb2 mongosh
 rs.initiate()
 rs.status()
 ```
+
+## Swagger access
+
+[Spring REST OpenAPI Documentation](https://www.baeldung.com/spring-rest-openapi-documentation)
+
+```bash
+http://localhost:8081/swagger-ui/index.html
+```

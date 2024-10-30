@@ -18,6 +18,7 @@ import com.example.jv_sv.model.dto.UserUpdateDTO;
 import com.example.jv_sv.service.UserService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 
 @RestController
 @RequestMapping("/api/user")
@@ -33,14 +34,14 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateDTO dto) {
+    public ResponseEntity<UserDTO> updateUser(@PathVariable @Min(1) Long id, @Valid @RequestBody UserUpdateDTO dto) {
         dto.setUserId(id);
         UserDTO updatedUser = service.update(dto);
         return ResponseEntity.ok(updatedUser);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+    public ResponseEntity<UserDTO> getUserById(@PathVariable @Min(1) Long id) {
         UserDTO user = service.getByUserId(id);
         return ResponseEntity.ok(user);
     }
