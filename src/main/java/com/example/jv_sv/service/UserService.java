@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.jv_sv.exception.BusinessException;
 import com.example.jv_sv.model.dto.UserDTO;
@@ -31,7 +30,6 @@ public class UserService {
     @Autowired
     private CounterService counterService;
 
-    @Transactional
     public UserDTO create(UserDTO dto) {
         validateUser(dto);
         Long userId = counterService.generateId("userId");
@@ -43,7 +41,6 @@ public class UserService {
         return mapper.toDto(savedEntity);
     }
 
-    @Transactional
     public UserDTO update(UserUpdateDTO dto) {
         UserEntity existingEntity = repository.findByUserId(dto.getUserId());
         if (existingEntity == null) {

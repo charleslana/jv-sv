@@ -24,14 +24,6 @@ kill -9 $(lsof -ti:8081)
 docker-compose up -d
 ```
 
-## Enable replica Transactional
-
-```bash
-docker exec -it mongodb2 mongosh
-rs.initiate()
-rs.status()
-```
-
 ## Swagger access
 
 [Spring REST OpenAPI Documentation](https://www.baeldung.com/spring-rest-openapi-documentation)
